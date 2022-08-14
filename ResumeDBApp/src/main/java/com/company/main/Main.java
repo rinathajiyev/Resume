@@ -13,6 +13,9 @@ public class Main {
         
         for(User u: list){
             System.out.println(u);
-        }       
+        }        
+        
+        User u = new User(6, "Anar", "Amirov", "anaramirov@gmail.com", "070-999-99-99");
+        userDao.addUser(u);
     }
 }
