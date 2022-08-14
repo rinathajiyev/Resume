@@ -13,6 +13,6 @@ public class Main {
         
         for(User u: list){
             System.out.println(u);
-        }        
+        }       
     }
 }
