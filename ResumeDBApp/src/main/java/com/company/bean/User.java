@@ -1,22 +1,31 @@
 package com.company.bean;
 
+import java.sql.Date;
+
 public class User {
     private int id;
     private String name;
     private String surname;
     private String email;
     private String phone;
+    private Date birthDate;
+    private Country nationality;
+    private Country birthPlace;
+    
     
     public User(){
         
     }
 
-    public User(int id, String name, String surname, String email, String phone) {
+    public User(int id, String name, String surname, String email, String phone, Date birthDate, Country nationality, Country birthPlace) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.phone = phone;
+        this.birthDate = birthDate;
+        this.nationality = nationality;
+        this.birthPlace = birthPlace;
     }
 
     public int getId() {
@@ -59,9 +68,33 @@ public class User {
         this.phone = phone;
     }
 
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public Country getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(Country nationality) {
+        this.nationality = nationality;
+    }
+
+    public Country getBirthPlace() {
+        return birthPlace;
+    }
+
+    public void setBirthPlace(Country birthPlace) {
+        this.birthPlace = birthPlace;
+    }
+
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", name=" + name + ", surname=" + surname + ", email=" + email + ", phone=" + phone + '}';
+        return "User{" + "id=" + id + ", name=" + name + ", surname=" + surname + ", email=" + email + ", phone=" + phone + ", birthDate=" + birthDate + ", nationality=" + nationality + ", birthPlace=" + birthPlace + '}';
     }
-       
+  
 }
