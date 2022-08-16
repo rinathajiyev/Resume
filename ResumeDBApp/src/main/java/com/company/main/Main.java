@@ -1,19 +1,31 @@
 package com.company.main;
 
-import com.company.bean.User;
-import com.company.dao.impl.UserDaoImpl;
-import com.company.dao.inter.UserDaoInter;
+import com.company.dao.inter.CountryDaoInter;
+import com.company.dao.inter.EmploymentHistoryDaoInter;
+import com.company.dao.inter.SkillDaoInter;
+import com.company.entity.Country;
+import com.company.entity.Skill;
 import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {        
-        UserDaoInter userDao = new UserDaoImpl();
-        List<User> list = userDao.getAll();
+        EmploymentHistoryDaoInter list = Context.instanceEmploymentHistoryDao();
+
+        System.out.println(list.getAllEmploymentHistoryByUserId(1));
+
+        CountryDaoInter countryDao = Context.instanceCountryDao();
+        List<Country> l1 = countryDao.getAll();
         
-        for(User u: list){
-            System.out.println(u);
-        }        
+        for(Country c: l1){
+            System.out.println(c);
+        }
         
+        SkillDaoInter skillDao = Context.instanceSkillDao();
+        List<Skill> l2 = skillDao.getAll();
+        
+        for(Skill s: l2){
+            System.out.println(s);
+        }            
     }
 }
