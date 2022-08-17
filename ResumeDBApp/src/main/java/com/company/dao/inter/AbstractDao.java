@@ -9,7 +9,7 @@ public class AbstractDao {
     public Connection connect() throws SQLException {
         String url = "jdbc:mysql://localhost:3306/resume";
         String username = "root";
-        String password = "12345";
+        String password = "rinathajiyev2002";
 
         Connection c = DriverManager.getConnection(url, username, password);
         
