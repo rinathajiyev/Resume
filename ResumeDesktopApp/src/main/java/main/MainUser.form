@@ -192,7 +192,7 @@
                           <Component id="cbCountry" alignment="0" max="32767" attributes="0"/>
                           <Component id="cbNationality" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="389" max="32767" attributes="0"/>
+                      <EmptySpace pref="438" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -276,37 +276,21 @@
             <Component class="javax.swing.JComboBox" name="cbNationality">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="2">
-                    <StringItem index="0" value="Azerbaijani"/>
-                    <StringItem index="1" value="American"/>
-                  </StringArray>
+                  <StringArray count="0"/>
                 </Property>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Country&gt;"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JComboBox" name="cbCountry">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="12">
-                    <StringItem index="0" value="Azerbaijan"/>
-                    <StringItem index="1" value="USA"/>
-                    <StringItem index="2" value="United Kingdom"/>
-                    <StringItem index="3" value="France"/>
-                    <StringItem index="4" value="Germany"/>
-                    <StringItem index="5" value="Italy"/>
-                    <StringItem index="6" value="Turkey"/>
-                    <StringItem index="7" value="Spain"/>
-                    <StringItem index="8" value="Norway"/>
-                    <StringItem index="9" value="Sweden"/>
-                    <StringItem index="10" value="Finland"/>
-                    <StringItem index="11" value="Canada"/>
-                  </StringArray>
+                  <StringArray count="0"/>
                 </Property>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Country&gt;"/>
               </AuxValues>
             </Component>
           </SubComponents>

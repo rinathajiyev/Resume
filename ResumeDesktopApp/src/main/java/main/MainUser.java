@@ -1,14 +1,18 @@
 package main;
 
+import com.company.dao.inter.CountryDaoInter;
 import com.company.dao.inter.UserDaoInter;
+import com.company.entity.Country;
 import com.company.entity.User;
 import com.company.main.Context;
+import java.util.List;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MainUser extends javax.swing.JFrame {
 
     private UserDaoInter userDao = Context.instanceUserDao();
+    private CountryDaoInter countryDao = Context.instanceCountryDao();
     User loggedInUser;
 
     /**
@@ -17,10 +21,23 @@ public class MainUser extends javax.swing.JFrame {
     public MainUser() {
         initComponents();
         loggedInUser = userDao.getById(1);
+        fillWindow();
         fillUserComponents();
     }
 
     private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+    private void fillWindow() {
+        List<Country> countries = countryDao.getAllCountries();
+        for (Country c : countries) {
+            cbCountry.addItem(c);
+        }
+        
+        List<Country> nationalities = countryDao.getAllNationalities();
+        for(Country n: nationalities){
+            cbNationality.addItem(n);
+        }
+    }
 
     private void fillUserComponents() {
         txtName.setText(loggedInUser.getName());
@@ -33,6 +50,9 @@ public class MainUser extends javax.swing.JFrame {
         Date dt = loggedInUser.getBirthDate();
         String dtStr = sdf.format(dt);
         txtBirthdate.setText(dtStr);
+        
+        cbCountry.setSelectedItem(loggedInUser.getBirthPlace());
+        cbNationality.setSelectedItem(loggedInUser.getNationality());
     }
 
     /**
@@ -147,10 +167,6 @@ public class MainUser extends javax.swing.JFrame {
 
         lblNationality.setText("Nationality");
 
-        cbNationality.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Azerbaijani", "American" }));
-
-        cbCountry.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Azerbaijan", "USA", "United Kingdom", "France", "Germany", "Italy", "Turkey", "Spain", "Norway", "Sweden", "Finland", "Canada" }));
-
         javax.swing.GroupLayout pnlDetailsLayout = new javax.swing.GroupLayout(pnlDetails);
         pnlDetails.setLayout(pnlDetailsLayout);
         pnlDetailsLayout.setHorizontalGroup(
@@ -172,7 +188,7 @@ public class MainUser extends javax.swing.JFrame {
                     .addComponent(txtBirthdate)
                     .addComponent(cbCountry, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbNationality, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(389, Short.MAX_VALUE))
+                .addContainerGap(438, Short.MAX_VALUE))
         );
         pnlDetailsLayout.setVerticalGroup(
             pnlDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,11 +281,14 @@ public class MainUser extends javax.swing.JFrame {
             String address = txtAddress.getText();
             String email = txtEmail.getText();
             String phone = txtPhone.getText();
-            String birthdate = txtBirthdate.getText();
 
+            String birthdate = txtBirthdate.getText();
             java.util.Date dtUtil = sdf.parse(birthdate);
             long l = dtUtil.getTime();
             java.sql.Date bd = new java.sql.Date(l);
+
+            Country country = (Country) cbCountry.getSelectedItem();
+            Country nationality = (Country) cbNationality.getSelectedItem();
 
             loggedInUser.setName(name);
             loggedInUser.setSurname(surname);
@@ -278,6 +297,8 @@ public class MainUser extends javax.swing.JFrame {
             loggedInUser.setEmail(email);
             loggedInUser.setPhone(phone);
             loggedInUser.setBirthDate(bd);
+            loggedInUser.setBirthPlace(country);
+            loggedInUser.setNationality(nationality);
 
             userDao.updateUser(loggedInUser);
         } catch (Exception ex) {
@@ -320,8 +341,8 @@ public class MainUser extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
-    private javax.swing.JComboBox<String> cbCountry;
-    private javax.swing.JComboBox<String> cbNationality;
+    private javax.swing.JComboBox<Country> cbCountry;
+    private javax.swing.JComboBox<Country> cbNationality;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblAddress;

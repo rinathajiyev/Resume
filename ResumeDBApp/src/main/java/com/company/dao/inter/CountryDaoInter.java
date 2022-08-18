@@ -5,5 +5,6 @@ import java.util.List;
 
 public interface CountryDaoInter {
     
-    public List<Country> getAll();
+    public List<Country> getAllCountries();
+    public List<Country> getAllNationalities();
 }

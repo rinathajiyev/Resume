@@ -15,7 +15,7 @@ public class Main {
         System.out.println(list.getAllEmploymentHistoryByUserId(1));
 
         CountryDaoInter countryDao = Context.instanceCountryDao();
-        List<Country> l1 = countryDao.getAll();
+        List<Country> l1 = countryDao.getAllCountries();
         
         for(Country c: l1){
             System.out.println(c);

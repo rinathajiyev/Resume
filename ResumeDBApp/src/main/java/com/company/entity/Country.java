@@ -1,24 +1,25 @@
 package com.company.entity;
 
 public class Country {
-    private Integer id;
+
+    private int id;
     private String name;
     private String nationality;
 
     public Country() {
     }
 
-    public Country(Integer id, String name, String nationality) {
+    public Country(int id, String name, String nationality) {
         this.id = id;
         this.name = name;
         this.nationality = nationality;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -40,6 +41,35 @@ public class Country {
 
     @Override
     public String toString() {
-        return "Country{" + "id=" + id + ", name=" + name + ", nationality=" + nationality + '}';
-    }     
+        if (this.nationality == null){
+            return name;
+        } else {
+            return nationality;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 19 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Country other = (Country) obj;
+        return this.id == other.id;
+    }
+
+   
+
 }
