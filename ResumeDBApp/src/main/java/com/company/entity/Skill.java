@@ -1,18 +1,22 @@
 package com.company.entity;
 
 public class Skill {
-    private Integer id;
+    private int id;
     private String name;
 
     public Skill() {
     }
 
-    public Skill(Integer id, String name) {
+    public Skill(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Integer getId() {
+    public Skill(String name) {
+        this.name = name;
+    }
+
+    public int getId() {
         return id;
     }
 
@@ -30,7 +34,7 @@ public class Skill {
 
     @Override
     public String toString() {
-        return "Skill{" + "id=" + id + ", name=" + name + '}';
+        return name;
     }
     
     

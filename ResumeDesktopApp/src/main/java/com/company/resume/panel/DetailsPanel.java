@@ -20,7 +20,6 @@ public class DetailsPanel extends javax.swing.JPanel {
      */
     public DetailsPanel() {
         initComponents();
-        fillWindow();
     }
 
     private void fillWindow() {
@@ -36,6 +35,7 @@ public class DetailsPanel extends javax.swing.JPanel {
     }
 
     public void fillUserComponents() {
+        fillWindow();
         User loggedInUser = Config.loggedInUser;
         txtAddress.setText(loggedInUser.getAddress());
         txtEmail.setText(loggedInUser.getEmail());
@@ -54,15 +54,15 @@ public class DetailsPanel extends javax.swing.JPanel {
             String address = txtAddress.getText();
             String email = txtEmail.getText();
             String phone = txtPhone.getText();
-            
+
             String birthdate = txtBirthdate.getText();
             java.util.Date dtUtil = sdf.parse(birthdate);
             long l = dtUtil.getTime();
             java.sql.Date bd = new java.sql.Date(l);
-            
+
             Country country = (Country) cbCountry.getSelectedItem();
             Country nationality = (Country) cbNationality.getSelectedItem();
-            
+
             u.setAddress(address);
             u.setEmail(email);
             u.setPhone(phone);

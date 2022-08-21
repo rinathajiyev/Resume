@@ -13,8 +13,8 @@ public class MainUser extends javax.swing.JFrame {
      * Creates new form Main
      */
     public MainUser() {
-        initComponents();
         Config.loggedInUser = userDao.getById(1);
+        initComponents();
         fillUserComponents();
         panelProfile.fillUserComponents();
         panelDetails.fillUserComponents();
@@ -97,18 +97,6 @@ public class MainUser extends javax.swing.JFrame {
 
         tpUserInfo.addTab("Details", panelDetails);
         tpUserInfo.addTab("Profile", panelProfile);
-
-        javax.swing.GroupLayout panelSkillsLayout = new javax.swing.GroupLayout(panelSkills);
-        panelSkills.setLayout(panelSkillsLayout);
-        panelSkillsLayout.setHorizontalGroup(
-            panelSkillsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 602, Short.MAX_VALUE)
-        );
-        panelSkillsLayout.setVerticalGroup(
-            panelSkillsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 344, Short.MAX_VALUE)
-        );
-
         tpUserInfo.addTab("Skills", panelSkills);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -149,7 +137,6 @@ public class MainUser extends javax.swing.JFrame {
             u.setSurname(surname);
             panelDetails.fillUser(u);
             panelProfile.fillUser(u);
-            panelSkills.fillUser(u);
 
             userDao.updateUser(u);
         } catch (Exception ex) {

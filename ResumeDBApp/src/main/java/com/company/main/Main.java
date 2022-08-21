@@ -26,6 +26,6 @@ public class Main {
         
         for(Skill s: l2){
             System.out.println(s);
-        }            
+        }   
     }
 }
