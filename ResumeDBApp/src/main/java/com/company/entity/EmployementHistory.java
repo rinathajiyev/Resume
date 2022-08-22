@@ -2,18 +2,18 @@ package com.company.entity;
 
 import java.sql.Date;
 
-public class EmploymentHistory {
-    private Integer id;
+public class EmployementHistory {
+    private int id;
     private String header;
     private Date beginDate;
     private Date endDate;
     private String jobDescription;
     private User user;
 
-    public EmploymentHistory() {
+    public EmployementHistory() {
     }
 
-    public EmploymentHistory(Integer id, String header, Date beginDate, Date endDate, String jobDescription, User user) {
+    public EmployementHistory(int id, String header, Date beginDate, Date endDate, String jobDescription, User user) {
         this.id = id;
         this.header = header;
         this.beginDate = beginDate;
@@ -22,11 +22,19 @@ public class EmploymentHistory {
         this.user = user;
     }
 
-    public Integer getId() {
+    public EmployementHistory(String header, Date beginDate, Date endDate, String jobDescription, User user) {
+        this.header = header;
+        this.beginDate = beginDate;
+        this.endDate = endDate;
+        this.jobDescription = jobDescription;
+        this.user = user;
+    } 
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -1,16 +1,16 @@
 package com.company.main;
 
 import com.company.dao.inter.CountryDaoInter;
-import com.company.dao.inter.EmploymentHistoryDaoInter;
 import com.company.dao.inter.SkillDaoInter;
 import com.company.entity.Country;
 import com.company.entity.Skill;
 import java.util.List;
+import com.company.dao.inter.EmployementHistoryDaoInter;
 
 public class Main {
 
     public static void main(String[] args) {        
-        EmploymentHistoryDaoInter list = Context.instanceEmploymentHistoryDao();
+        EmployementHistoryDaoInter list = Context.instanceEmployementHistoryDao();
 
         System.out.println(list.getAllEmploymentHistoryByUserId(1));
 

@@ -19,6 +19,7 @@ public class MainUser extends javax.swing.JFrame {
         panelProfile.fillUserComponents();
         panelDetails.fillUserComponents();
         panelSkills.fillUserComponents();
+        panelHistory.fillUserComponents();
     }
 
     private void fillUserComponents() {
@@ -47,6 +48,7 @@ public class MainUser extends javax.swing.JFrame {
         panelDetails = new com.company.resume.panel.DetailsPanel();
         panelProfile = new com.company.resume.panel.ProfilePanel();
         panelSkills = new com.company.resume.panel.SkillsPanel();
+        panelHistory = new com.company.resume.panel.EmployementHistoryPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,6 +100,7 @@ public class MainUser extends javax.swing.JFrame {
         tpUserInfo.addTab("Details", panelDetails);
         tpUserInfo.addTab("Profile", panelProfile);
         tpUserInfo.addTab("Skills", panelSkills);
+        tpUserInfo.addTab("Employement History", panelHistory);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -181,6 +184,7 @@ public class MainUser extends javax.swing.JFrame {
     private javax.swing.JButton btnSave;
     private javax.swing.JSeparator jSeparator1;
     private com.company.resume.panel.DetailsPanel panelDetails;
+    private com.company.resume.panel.EmployementHistoryPanel panelHistory;
     private com.company.resume.panel.ProfilePanel panelProfile;
     private com.company.resume.panel.SkillsPanel panelSkills;
     private javax.swing.JLabel pnlName;

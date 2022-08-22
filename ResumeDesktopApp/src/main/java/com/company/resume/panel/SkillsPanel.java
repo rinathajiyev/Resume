@@ -16,6 +16,7 @@ public class SkillsPanel extends javax.swing.JPanel {
 
     private SkillDaoInter skillDao = Context.instanceSkillDao();
     private UserSkillDaoInter userSkillDao = Context.instanceUserSkillDao();
+    private List<UserSkill> list = new ArrayList<>();
 
     /**
      * Creates new form SkillsPanel
@@ -32,8 +33,6 @@ public class SkillsPanel extends javax.swing.JPanel {
 
         fillTable();
     }
-
-    private List<UserSkill> list = new ArrayList<>();
 
     private void fillTable() {
         User user = Config.loggedInUser;

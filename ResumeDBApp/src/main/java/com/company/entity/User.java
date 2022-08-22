@@ -15,6 +15,7 @@ public class User {
     private Country nationality;
     private Country birthPlace;
     private List<UserSkill> skills;
+    private List<EmployementHistory> history;
     
     
     public User(){
@@ -127,9 +128,17 @@ public class User {
         this.address = address;
     }
 
+    public List<EmployementHistory> getHistory() {
+        return history;
+    }
+
+    public void setHistory(List<EmployementHistory> history) {
+        this.history = history;
+    }
+
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", name=" + name + ", surname=" + surname + ", email=" + email + ", profileDesc=" + profileDesc + ", address=" + address + ", phone=" + phone + ", birthDate=" + birthDate + ", nationality=" + nationality + ", birthPlace=" + birthPlace + ", skills=" + skills + '}';
+        return "User{" + "id=" + id + ", name=" + name + ", surname=" + surname + ", email=" + email + ", profileDesc=" + profileDesc + ", address=" + address + ", phone=" + phone + ", birthDate=" + birthDate + ", nationality=" + nationality + ", birthPlace=" + birthPlace + ", skills=" + skills + ", history=" + history + '}';
     }
-    
+
 }
