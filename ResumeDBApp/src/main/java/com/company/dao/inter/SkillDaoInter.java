@@ -12,5 +12,7 @@ public interface SkillDaoInter {
     public boolean updateSkill(Skill skill);
     
     public boolean insertSkill(Skill skill);
+    
+    public Skill getById(int id);
 
 }

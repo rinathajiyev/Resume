@@ -33,6 +33,27 @@ public class SkillDaoImpl extends AbstractDao implements SkillDaoInter {
 
         return result;
     }
+    
+    @Override
+    public Skill getById(int userId) {
+        Skill result = null;
+        try {
+            Connection c = connect();
+            Statement stmt = c.createStatement();
+            stmt.execute("select * from skill where id = " + userId);
+            ResultSet rs = stmt.getResultSet();
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                result = new Skill(id, name);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return result;
+    }
 
     @Override
     public boolean removeSkill(int id) {
