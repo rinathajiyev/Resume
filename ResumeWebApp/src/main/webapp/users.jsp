@@ -57,7 +57,7 @@
                             <th>name</th>
                             <th>surname</th>
                             <th>nationality</th>
-                            <th></th>
+                            <th>Operations</th>
                         </tr>
                     </thead>
                     <tbody>
