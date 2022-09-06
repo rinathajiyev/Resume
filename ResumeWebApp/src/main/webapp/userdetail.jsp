@@ -1,9 +1,3 @@
-<%-- 
-    Document   : user
-    Created on : Aug 30, 2022, 10:30:36 AM
-    Author     : Casper
---%>
-
 <%@page import="com.company.entity.User"%>
 <%@page import="com.company.dao.inter.UserDaoInter"%>
 <%@page import="com.company.main.Context"%>
@@ -16,23 +10,8 @@
     </head>
     <body>
         <%
-            UserDaoInter userDao = Context.instanceUserDao();
-
-//            if (request.getParameter("save") != null && request.getParameter("save").equals("Save")) {
-//                int id = Integer.parseInt(request.getParameter("id"));
-//                String name = request.getParameter("name");
-//                String surname = request.getParameter("surname");
-//
-//                User u = userDao.getById(id);
-//                u.setName(name);
-//                u.setSurname(surname);
-//
-//                userDao.updateUser(u);
-//            }
-
-            User user = userDao.getById(1);
+            User user = (User) request.getAttribute("user");
         %>
-
         <div>
             <form action="UserController" method="POST">
                 <input type="hidden" name="id" value="<%=user.getId()%>"/>

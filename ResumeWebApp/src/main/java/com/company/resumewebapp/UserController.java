@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "UserController", urlPatterns = {"/UserController"})
+@WebServlet(name = "UserController", urlPatterns = {"/userdetail"})
 public class UserController extends HttpServlet {
 
     private UserDaoInter userDao = Context.instanceUserDao();
@@ -28,7 +28,33 @@ public class UserController extends HttpServlet {
 
         userDao.updateUser(u);
 
-        response.sendRedirect("user.jsp");
+        response.sendRedirect("userdetail.jsp");
+
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        try {
+            User user = null;
+            String userIdStr = request.getParameter("id");
+            if (userIdStr == null || userIdStr.trim().isEmpty()) {
+                throw new IllegalArgumentException("specify id");
+            }
+
+            Integer userId = Integer.valueOf(request.getParameter("id"));
+            UserDaoInter userDao = Context.instanceUserDao();
+            user = userDao.getById(userId);
+            if (user == null) {
+                throw new IllegalArgumentException("There is no user with this id");
+            }
+
+            request.setAttribute("user", user);
+            request.getRequestDispatcher("userdetail.jsp").forward(request, response);
+
+        } catch (Exception ex){
+            ex.printStackTrace();
+            response.sendRedirect("error?msg="+ex.getMessage());
+        }
 
     }
 
