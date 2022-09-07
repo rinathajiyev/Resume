@@ -1,9 +1,3 @@
-<%-- 
-    Document   : user
-    Created on : Aug 30, 2022, 10:30:36 AM
-    Author     : Casper
---%>
-
 <%@page import="com.company.entity.User"%>
 <%@page import="com.company.dao.inter.UserDaoInter"%>
 <%@page import="com.company.main.Context"%>
@@ -58,6 +52,7 @@
                             <th>surname</th>
                             <th>nationality</th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -66,13 +61,22 @@
                             <td><%=u.getName()%></td>
                             <td><%=u.getSurname()%></td>
                             <td><%=u.getNationality().getName() == null?"N/A":u.getNationality().getName()%></td>
-                            <td>
-                                <button class="btn btn-danger" type="submit", name="action", value="delete">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </button>
-                                <button class="btn btn-secondary" type="submit", name="action", value="update">
-                                    <i class="fa-solid fa-pen"/></i>
-                                </button>
+                            <td style="width:2px">
+                                <form action="userdetail" method="POST">
+                                    <input type="hidden" name="id" value="<%=u.getId()%>"/>
+                                    <input type="hidden" name="action" value="delete"/>
+                                    <button class="btn btn-danger" type="submit", value="delete">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                </form>
+                            </td>
+                            <td style="width:2px">
+                                <form action="userdetail" method="GET">
+                                    <input type="hidden" name="id" value="<%=u.getId()%>"/>
+                                    <button class="btn btn-secondary" type="submit", value="update">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     <%}%>

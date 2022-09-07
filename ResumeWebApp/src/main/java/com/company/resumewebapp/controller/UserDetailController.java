@@ -1,4 +1,4 @@
-package com.company.resumewebapp;
+package com.company.resumewebapp.controller;
 
 import com.company.dao.inter.UserDaoInter;
 import com.company.entity.User;
@@ -10,25 +10,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "UserController", urlPatterns = {"/userdetail"})
-public class UserController extends HttpServlet {
+@WebServlet(name = "UserDetailController", urlPatterns = {"/userdetail"})
+public class UserDetailController extends HttpServlet {
 
     private UserDaoInter userDao = Context.instanceUserDao();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String action = request.getParameter("action");
         int id = Integer.parseInt(request.getParameter("id"));
-        String name = request.getParameter("name");
-        String surname = request.getParameter("surname");
+        if(action.equals("update")) {
+            String name = request.getParameter("name");
+            String surname = request.getParameter("surname");
 
-        User u = userDao.getById(id);
-        u.setName(name);
-        u.setSurname(surname);
+            User u = userDao.getById(id);
+            u.setName(name);
+            u.setSurname(surname);
 
-        userDao.updateUser(u);
+            userDao.updateUser(u);
+        } else if(action.equals("delete")){
+            userDao.removeUser(id);
+        }
 
-        response.sendRedirect("userdetail.jsp");
+        response.sendRedirect("users");
 
     }
 
@@ -41,7 +46,7 @@ public class UserController extends HttpServlet {
                 throw new IllegalArgumentException("specify id");
             }
 
-            Integer userId = Integer.valueOf(request.getParameter("id"));
+            Integer userId = Integer.valueOf(userIdStr);
             UserDaoInter userDao = Context.instanceUserDao();
             user = userDao.getById(userId);
             if (user == null) {

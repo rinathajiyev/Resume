@@ -4,10 +4,8 @@
     <title>Why are you here?</title>
 </head>
 <body>
-    <%
-      String msg = request.getParameter("msg");
-    %>
-    <%=msg%>
-
+    <center>
+        <%=request.getParameter("msg")%>
+    </center>
 </body>
 </html>

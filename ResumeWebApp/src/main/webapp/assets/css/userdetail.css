@@ -1,0 +1,13 @@
+.set_position{
+    display: inline-block;
+}
+
+.set_words{
+    font-size: 18px;
+    color: #de7e09;
+    font-weight: bold;
+}
+
+.divElement{
+    margin: 0px auto;
+}
