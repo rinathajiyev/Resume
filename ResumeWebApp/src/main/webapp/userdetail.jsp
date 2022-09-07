@@ -82,8 +82,9 @@
                     </div>
                 </div>
 
-                <input type="hidden" name="action" value="update"/>
+
                 <div style="width:50%" class="col divElement">
+                    <input type="hidden" name="action" value="update"/>
                     <center>
                         <input class="btn btn-primary col-6" type="submit" name="save" value="Save"/>
                     </center>
