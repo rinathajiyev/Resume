@@ -40,7 +40,6 @@ public class UserDaoImpl extends AbstractDao implements UserDaoInter {
         try {
             Connection c = connect();
 
-
             String sql = "select\n"
                     + "	u.*,\n"
                     + "	n.nationality,\n"
@@ -58,7 +57,7 @@ public class UserDaoImpl extends AbstractDao implements UserDaoInter {
             }
 
             if(nationalityId != null){
-                sql += " and u.nationailty_id = ?";
+                sql += " and u.nationality_id = ?";
             }
 
             PreparedStatement stmt = c.prepareStatement(sql);

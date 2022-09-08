@@ -4,8 +4,6 @@
 <%@ page import="com.company.entity.Country" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.company.dao.inter.CountryDaoInter" %>
-<%@ page import="com.company.dao.inter.EmployementHistoryDaoInter" %>
-<%@ page import="com.company.entity.EmployementHistory" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -74,7 +72,7 @@
                         <i class="fa-solid fa-flag"></i>
                         <label class="set_words" for="nationality">Nationality</label>
                         <select class="form-control">
-                            <option selected><%=user.getNationality().getName()%></option>
+                            <option selected><%=user.getNationality().getNationality()%></option>
                             <%for(Country n: nationalities){%>
                             <option><%=n%></option>
                             <%}%>
@@ -85,6 +83,7 @@
 
                 <div style="width:50%" class="col divElement">
                     <input type="hidden" name="action" value="update"/>
+
                     <center>
                         <input class="btn btn-primary col-6" type="submit" name="save" value="Save"/>
                     </center>

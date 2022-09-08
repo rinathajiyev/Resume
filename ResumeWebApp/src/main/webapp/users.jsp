@@ -1,6 +1,4 @@
 <%@page import="com.company.entity.User"%>
-<%@page import="com.company.dao.inter.UserDaoInter"%>
-<%@page import="com.company.main.Context"%>
 <%@ page import="java.util.List" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,18 +12,8 @@
     </head>
     <body>
         <%
-            UserDaoInter userDao = Context.instanceUserDao();
-            String name = request.getParameter("name");
-            String surname = request.getParameter("surname");
-            String nationalityIdStr = request.getParameter("nid");
-            Integer nationalityId = null;
-
-            if(nationalityIdStr != null && !nationalityIdStr.trim().isEmpty()) {
-                nationalityId = Integer.parseInt(nationalityIdStr);
-            }
-            List<User> users = userDao.getAll(name, surname, nationalityId);
+            List<User> users = (List<User>) request.getAttribute("users");
         %>
-
             <div class="container mycontainer">
                 <div class="row">
                     <div class="col-4">
@@ -60,7 +48,7 @@
                         <tr>
                             <td><%=u.getName()%></td>
                             <td><%=u.getSurname()%></td>
-                            <td><%=u.getNationality().getName() == null?"N/A":u.getNationality().getName()%></td>
+                            <td><%=u.getNationality().getNationality()== null?"N/A":u.getNationality().getNationality()%></td>
                             <td style="width:2px">
                                 <form action="userdetail" method="POST">
                                     <input type="hidden" name="id" value="<%=u.getId()%>"/>
