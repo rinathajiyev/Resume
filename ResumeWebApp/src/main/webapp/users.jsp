@@ -22,18 +22,18 @@
                 <div class="row">
                     <div class="col-4">
                         <form action="users.jsp" method="GET">
-                        <div class="form-group">
-                            <label for="name">name</label>
-                            <input placeholder="enter name" class="form-control" type="text" name="name" value=""/>
-                        </div>
+                            <div class="form-group">
+                                <label for="name">name</label>
+                                <input placeholder="enter name" class="form-control" type="text" name="name" value=""/>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="surname">surname</label>
-                            <input placeholder="enter surname" class="form-control" type="text" name="surname" value=""/>
-                        </div>
+                            <div class="form-group">
+                                <label for="surname">surname</label>
+                                <input placeholder="enter surname" class="form-control" type="text" name="surname" value=""/>
+                            </div>
 
-                        <input class="btn btn-primary" type="submit" name="search" value="Search"/>
-                    </form>
+                            <input class="btn btn-primary" type="submit" name="search" value="Search"/>
+                        </form>
                     </div >
                 </div>
 

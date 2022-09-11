@@ -1,0 +1,15 @@
+.divElement{
+    width: 350px;
+    margin: 0px auto;
+}
+
+.login_header{
+    font-size: 40px;
+    font-weight: bold;
+    color: darkorange;
+}
+
+.login_body{
+    font-size: 20px;
+    font-family: "Britannic Bold";
+}
