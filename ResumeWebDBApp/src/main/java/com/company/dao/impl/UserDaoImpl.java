@@ -1,14 +1,12 @@
 package com.company.dao.impl;
 
+import at.favre.lib.crypto.bcrypt.*;
 import com.company.entity.Country;
 import com.company.entity.User;
 import com.company.dao.inter.AbstractDao;
 import com.company.dao.inter.UserDaoInter;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +18,7 @@ public class UserDaoImpl extends AbstractDao implements UserDaoInter {
         String surname = rs.getString("surname");
         String email = rs.getString("email");
         String profileDesc = rs.getString("profile_description");
+        String password = rs.getString("password");
         String address = rs.getString("address");
         String phone = rs.getString("phone");
         Date date = rs.getDate("birthdate");
@@ -31,7 +30,21 @@ public class UserDaoImpl extends AbstractDao implements UserDaoInter {
         Country nationality = new Country(nationalityId, null, nationalityStr);
         Country birthplace = new Country(birthplaceId, birthplaceStr, null);
 
-        return new User(id, name, surname, email, profileDesc, address, phone, date, nationality, birthplace);
+        return new User(id, name, surname, email, profileDesc, password, address, phone, date, nationality, birthplace);
+    }
+
+    private User getUserSimple(ResultSet rs) throws Exception {
+        int id = rs.getInt("id");
+        String name = rs.getString("name");
+        String surname = rs.getString("surname");
+        String email = rs.getString("email");
+        String profileDesc = rs.getString("profile_description");
+        String password = rs.getString("password");
+        String address = rs.getString("address");
+        String phone = rs.getString("phone");
+        Date date = rs.getDate("birthdate");
+
+        return new User(id, name, surname, email, profileDesc, password, address, phone, date, null, null);
     }
 
     @Override
@@ -86,6 +99,43 @@ public class UserDaoImpl extends AbstractDao implements UserDaoInter {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+
+        return result;
+    }
+
+    @Override
+    public User findByEmailAndPassword(String email, String password) {
+        User result = null;
+        try (Connection c = connect()){
+            PreparedStatement statement = c.prepareStatement("select * from user where email=? and password=?");
+            statement.setString(1, email);
+            statement.setString(2, password);
+
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()){
+                result = getUserSimple(rs);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        User result = null;
+        try (Connection c = connect()){
+            PreparedStatement statement = c.prepareStatement("select * from user where email=?");
+            statement.setString(1, email);
+
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()){
+                result = getUserSimple(rs);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return result;
@@ -150,20 +200,23 @@ public class UserDaoImpl extends AbstractDao implements UserDaoInter {
         return result;
     }
 
+    private static BCrypt.Hasher crypt = BCrypt.withDefaults();
+
     @Override
     public boolean addUser(User u) {
         try {
             Connection c = connect();
-            PreparedStatement stmt = c.prepareStatement("insert into user(name, surname, email, phone, profile_description, address, birthdate, birthplace_id, nationality_id) values(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement stmt = c.prepareStatement("insert into user(name, surname, email, phone, profile_description, password, address, birthdate, birthplace_id, nationality_id) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             stmt.setString(1, u.getName());
             stmt.setString(2, u.getSurname());
             stmt.setString(3, u.getEmail());
             stmt.setString(4, u.getPhone());
             stmt.setString(5, u.getProfileDesc());
-            stmt.setString(6, u.getAddress());
-            stmt.setDate(7, u.getBirthDate());
-            stmt.setInt(8, u.getBirthPlace().getId());
-            stmt.setInt(9, u.getNationality().getId());
+            stmt.setString(6, crypt.hashToString(4, u.getPassword().toCharArray()));
+            stmt.setString(7, u.getAddress());
+            stmt.setDate(8, u.getBirthDate());
+            stmt.setInt(9, u.getBirthPlace().getId());
+            stmt.setInt(10, u.getNationality().getId());
             return stmt.execute();
         } catch (Exception ex) {
             ex.printStackTrace();

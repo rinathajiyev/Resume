@@ -1,5 +1,6 @@
 package com.company.resumewebapp.controller;
 
+import at.favre.lib.crypto.bcrypt.*;
 import com.company.dao.inter.*;
 import com.company.entity.*;
 import com.company.main.*;
@@ -15,6 +16,8 @@ public class LoginController extends HttpServlet {
 
     private UserDaoInter userDao = Context.instanceUserDao();
 
+    private static BCrypt.Verifyer verifyer = BCrypt.verifyer();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         request.getRequestDispatcher("login.jsp").forward(request, response);
@@ -26,10 +29,16 @@ public class LoginController extends HttpServlet {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
 
-            User user = userDao.findByEmailAndPassword(email, password);
+            User user = userDao.findByEmail(email);
 
             if (user == null) {
-                throw new IllegalArgumentException("the email or password is incorrect! Please try again...");
+                throw new IllegalArgumentException("User doesn't exist");
+            }
+
+            BCrypt.Result rs = verifyer.verify(password.toCharArray(), user.getPassword().toCharArray());
+
+            if(!rs.verified){
+                throw new IllegalArgumentException("Password is incorrect");
             }
 
             request.getSession().setAttribute("loggedInUser", user);

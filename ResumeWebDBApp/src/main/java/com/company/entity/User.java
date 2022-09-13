@@ -9,6 +9,8 @@ public class User {
     private String surname;
     private String email;
     private String profileDesc;
+
+    private String password;
     private String address;
     private String phone;
     private Date birthDate;
@@ -25,14 +27,15 @@ public class User {
     public User(int id) {
         this.id = id;
     }
-    
 
-    public User(int id, String name, String surname, String email, String profileDesc, String address, String phone, Date birthDate, Country nationality, Country birthPlace) {
+
+    public User(int id, String name, String surname, String email, String profileDesc, String password, String address, String phone, Date birthDate, Country nationality, Country birthPlace) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.profileDesc = profileDesc;
+        this.password = password;
         this.address = address;
         this.phone = phone;
         this.birthDate = birthDate;
@@ -134,6 +137,14 @@ public class User {
 
     public void setHistory(List<EmployementHistory> history) {
         this.history = history;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
