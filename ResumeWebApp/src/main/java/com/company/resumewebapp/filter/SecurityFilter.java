@@ -21,4 +21,12 @@ public class SecurityFilter implements Filter {
             ex.printStackTrace();
         }
     }
+
+    public void destroy(){
+
+    }
+
+    public void init(FilterConfig filterConfig){
+
+    }
 }

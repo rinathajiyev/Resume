@@ -16,4 +16,12 @@ public class JspFilter implements Filter {
            e.printStackTrace();
         }
     }
+
+    public void destroy(){
+
+    }
+
+    public void init(FilterConfig filterConfig){
+
+    }
 }

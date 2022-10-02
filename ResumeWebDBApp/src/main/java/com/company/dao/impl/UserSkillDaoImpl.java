@@ -19,8 +19,9 @@ public class UserSkillDaoImpl extends AbstractDao implements UserSkillDaoInter {
         int skillId = rs.getInt("skill_id");
         int power = rs.getInt("power");
         String skillName = rs.getString("skill_name");
+        return null;
 
-        return new UserSkill(userSkillId, new User(userId), new Skill(skillId, skillName), power);
+//        return new UserSkill(userSkillId, new User(userId), new Skill(skillId, skillName), power);
     }
 
     @Override

@@ -25,7 +25,9 @@
 
             List<Country> countries = countryDao.getAllCountries();
             List<Country> nationalities = countryDao.getAllNationalities();
+
         %>
+        <%=nationalities%>
 
             <form action="userdetail" method="POST">
                 <input type="hidden" name="id" value="<%=user.getId()%>"/>

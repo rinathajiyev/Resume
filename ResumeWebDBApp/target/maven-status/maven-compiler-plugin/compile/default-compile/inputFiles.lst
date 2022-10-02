@@ -3,7 +3,7 @@ C:\Workspace\Resume\ResumeWebDBApp\src\main\java\com\company\entity\User.java
 C:\Workspace\Resume\ResumeWebDBApp\src\main\java\com\company\dao\impl\SkillDaoImpl.java
 C:\Workspace\Resume\ResumeWebDBApp\src\main\java\com\company\dao\inter\EmployementHistoryDaoInter.java
 C:\Workspace\Resume\ResumeWebDBApp\src\main\java\com\company\dao\inter\SkillDaoInter.java
-C:\Workspace\Resume\ResumeWebDBApp\src\main\java\com\company\entity\EmployementHistory.java
+C:\Workspace\Resume\ResumeWebDBApp\src\main\java\com\company\entity\EmploymentHistory.java
 C:\Workspace\Resume\ResumeWebDBApp\src\main\java\com\company\entity\UserSkill.java
 C:\Workspace\Resume\ResumeWebDBApp\src\main\java\com\company\dao\impl\UserSkillDaoImpl.java
 C:\Workspace\Resume\ResumeWebDBApp\src\main\java\com\company\dao\inter\UserSkillDaoInter.java
